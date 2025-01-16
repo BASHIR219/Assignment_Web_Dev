@@ -1,13 +1,44 @@
-function generateTable() {
-    const name = document.getElementById('text').value;
-    const employeeType = document.querySelector('input[name="radioInput"]:checked').value;
-    const email = document.getElementById('email').value;
-    const preference = document.getElementById('dropdown').value;
-    const completedTraining = document.getElementById('checkbox').checked ? 'Yes' : 'No';
-    const graduateYear = document.getElementById('number').value;
+function addElement() {
+    const name = document.getElementById('inputName').value;
+    const type = document.getElementById('inputType').value;
+    const required = document.getElementById('required').value;
+    const label = document.getElementById('inputLabel').value;
 
-    const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+    if (!name || !label) {
+        alert('Please fill out all fields.');
+        return;
+    }
+
+    const table = document.getElementById('elementsTable').getElementsByTagName('tbody')[0];
     const newRow = table.insertRow();
 
-    newRow.innerHTML = `<td>${name}</td><td>${employeeType}</td><td>${email}</td><td>${preference}</td><td>${completedTraining}</td><td>${graduateYear}</td>`;
+    newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${type}</td>
+        <td>${required}</td>
+        <td>${label}</td>
+    `;
+
+    document.getElementById('formBuilder').reset();
+}
+
+function downloadHTML() {
+    let htmlContent = '<form>\n';
+    const rows = document.getElementById('elementsTable').getElementsByTagName('tbody')[0].rows;
+
+    for (let row of rows) {
+        const name = row.cells[0].innerText;
+        const type = row.cells[1].innerText;
+        const required = row.cells[2].innerText === 'true' ? 'required' : '';
+        const label = row.cells[3].innerText;
+
+        htmlContent += `<label>${label}: <input type="${type}" name="${name}" ${required}></label><br>\n`;
+    }
+
+    htmlContent += '</form>';
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'form.html';
+    link.click();
 }
