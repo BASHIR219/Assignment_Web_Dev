@@ -1,0 +1,61 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+.content{
+    background-color: #83b8ef;
+}
+
+form { 
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: auto;
+    border-radius: 8px;
+    max-width: 400px;
+    background-color: rgb(231, 231, 231);
+    /* border: 5px solid red; */
+}
+.formClass{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+/* .downloadBtn{
+    width: 30px;
+} */
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
+button {
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.footer {
+
+    color: black;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
